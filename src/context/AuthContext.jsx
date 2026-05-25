@@ -9,11 +9,13 @@ export function AuthProvider({ children }) {
 
   // Hydrate depuis localStorage au démarrage
   useEffect(() => {
-    const saved = localStorage.getItem('medico_user')
-    const token = localStorage.getItem('medico_token')
-    if (saved && token) {
-      try { setUser(JSON.parse(saved)) } catch {}
-    }
+    try {
+      const saved = localStorage.getItem('medico_user')
+      const token = localStorage.getItem('medico_token')
+      if (saved && token) {
+        try { setUser(JSON.parse(saved)) } catch {}
+      }
+    } catch {}
     setLoading(false)
   }, [])
 
