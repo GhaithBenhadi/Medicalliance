@@ -1,9 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import legacy from '@vitejs/plugin-legacy'
 
 export default defineConfig({
-  plugins: [react()],
-  build: {
-    target: ['chrome87', 'firefox78', 'safari14', 'edge88'],
-  },
+  plugins: [
+    react(),
+    legacy({
+      targets: ['defaults', 'safari >= 12', 'ios >= 12'],
+    }),
+  ],
 })
