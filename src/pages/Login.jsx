@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, MapPin, CheckCircle, Eye, EyeOff, AlertCircle, ChevronDown } from 'lucide-react'
+import { ArrowRight, CheckCircle, Eye, EyeOff, AlertCircle, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 const DEMO_ACCOUNTS = [
@@ -15,7 +14,6 @@ const DEMO_ACCOUNTS = [
     accentBar: 'bg-indigo-500',
     badgeBg: 'bg-indigo-50',
     badgeText: 'text-indigo-700',
-    desc: 'Matching · Réseau · Reporting',
   },
   {
     email: 'sophie@groupement-so.fr',
@@ -28,7 +26,6 @@ const DEMO_ACCOUNTS = [
     accentBar: 'bg-violet-500',
     badgeBg: 'bg-violet-50',
     badgeText: 'text-violet-700',
-    desc: 'Consultations · Commandes groupées',
   },
   {
     email: 'pierre@medipro.fr',
@@ -41,7 +38,6 @@ const DEMO_ACCOUNTS = [
     accentBar: 'bg-emerald-500',
     badgeBg: 'bg-emerald-50',
     badgeText: 'text-emerald-700',
-    desc: 'Offres · Livraisons · SAV',
   },
   {
     email: 'isabelle@ehpad-jardins.fr',
@@ -54,7 +50,6 @@ const DEMO_ACCOUNTS = [
     accentBar: 'bg-amber-400',
     badgeBg: 'bg-amber-50',
     badgeText: 'text-amber-700',
-    desc: 'Besoins · Demandes · Suivi',
   },
 ]
 
@@ -72,12 +67,12 @@ const STATS = [
 
 export default function Login({ onLogin }) {
   const { login } = useAuth()
-  const [loadingId, setLoadingId]   = useState(null)
-  const [showForm,  setShowForm]    = useState(false)
-  const [email,     setEmail]       = useState('')
-  const [password,  setPassword]    = useState('')
-  const [showPwd,   setShowPwd]     = useState(false)
-  const [error,     setError]       = useState('')
+  const [loadingId, setLoadingId] = useState(null)
+  const [showForm,  setShowForm]  = useState(false)
+  const [email,     setEmail]     = useState('')
+  const [password,  setPassword]  = useState('')
+  const [showPwd,   setShowPwd]   = useState(false)
+  const [error,     setError]     = useState('')
 
   const handleDemoLogin = async (acc) => {
     if (loadingId) return
@@ -112,40 +107,21 @@ export default function Login({ onLogin }) {
         className="hidden lg:flex flex-col w-[440px] shrink-0 relative overflow-hidden"
         style={{ background: 'linear-gradient(155deg, #0f0c29 0%, #1e1b4b 45%, #0f172a 100%)' }}
       >
-        {/* Decorative blobs */}
-        <div
-          className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-20 pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)' }}
-        />
-        <div
-          className="absolute bottom-10 -left-20 w-80 h-80 rounded-full opacity-15 pointer-events-none"
-          style={{ background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)' }}
-        />
-        {/* Dot grid overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)',
-            backgroundSize: '28px 28px',
-          }}
-        />
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-20 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #6366f1 0%, transparent 70%)' }} />
+        <div className="absolute bottom-10 -left-20 w-80 h-80 rounded-full opacity-15 pointer-events-none"
+          style={{ background: 'radial-gradient(circle, #8b5cf6 0%, transparent 70%)' }} />
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
 
         <div className="relative z-10 flex flex-col h-full p-10">
-
-          {/* Logo */}
           <div className="mb-12">
             <div className="inline-block bg-white rounded-xl px-4 py-2 shadow-sm">
-              <img
-                src="/logo-medicalliance.jpg"
-                alt="Medicalliance"
-                className="h-10 w-auto object-contain"
-              />
+              <img src="/logo-medicalliance.jpg" alt="Medicalliance" className="h-10 w-auto object-contain" />
             </div>
           </div>
 
-          {/* Hero content */}
           <div className="flex-1">
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/20 border border-indigo-400/30 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
               <span className="text-indigo-200 text-[11px] font-semibold tracking-widest uppercase">Version démo</span>
@@ -158,7 +134,6 @@ export default function Login({ onLogin }) {
               Medicalliance connecte établissements, centrales d'achat et fournisseurs agréés du réseau Occitanie pour une gestion fluide des équipements médicaux.
             </p>
 
-            {/* Features */}
             <div className="space-y-3 mb-10">
               {FEATURES.map(f => (
                 <div key={f} className="flex items-start gap-3">
@@ -168,10 +143,9 @@ export default function Login({ onLogin }) {
               ))}
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-3">
               {STATS.map(s => (
-                <div key={s.label} className="rounded-2xl bg-white/5 border border-white/8 p-3 text-center">
+                <div key={s.label} className="rounded-2xl bg-white/5 border border-white/10 p-3 text-center">
                   <p className="text-2xl font-bold text-white">{s.val}</p>
                   <p className="text-xs text-slate-400 mt-0.5">{s.label}</p>
                 </div>
@@ -189,46 +163,30 @@ export default function Login({ onLogin }) {
 
           {/* Mobile logo */}
           <div className="mb-8 lg:hidden">
-            <img
-              src="/logo-medicalliance.jpg"
-              alt="Medicalliance"
-              className="h-10 w-auto object-contain"
-            />
+            <img src="/logo-medicalliance.jpg" alt="Medicalliance" className="h-10 w-auto object-contain" />
           </div>
 
-          {/* Heading */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900">Bienvenue</h2>
-            <p className="text-gray-500 text-sm mt-1">
-              Sélectionnez votre espace pour explorer la plateforme
-            </p>
+            <p className="text-gray-500 text-sm mt-1">Sélectionnez votre espace pour explorer la plateforme</p>
           </div>
 
           {/* Demo profile cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-            {DEMO_ACCOUNTS.map((acc, i) => (
-              <motion.button
+            {DEMO_ACCOUNTS.map((acc) => (
+              <button
                 key={acc.email}
                 onClick={() => handleDemoLogin(acc)}
                 disabled={loadingId !== null}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07 }}
-                whileHover={{ y: -2, boxShadow: '0 8px 24px -4px rgba(0,0,0,0.10)' }}
-                whileTap={{ scale: 0.98 }}
-                className="relative flex items-center gap-3 bg-white rounded-2xl border border-gray-200 p-4 text-left shadow-sm hover:border-gray-300 transition-all overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="relative flex items-center gap-3 bg-white rounded-2xl border border-gray-200 p-4 text-left shadow-sm hover:border-gray-300 hover:-translate-y-0.5 hover:shadow-md active:scale-[0.98] transition-all overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {/* Accent bar */}
                 <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${acc.accentBar} rounded-l-2xl`} />
-
-                {/* Avatar */}
                 <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${acc.gradient} flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm`}>
                   {loadingId === acc.email
                     ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                     : acc.initials
                   }
                 </div>
-
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-bold text-gray-900 leading-tight">{acc.name}</p>
                   <p className="text-[11px] text-gray-400 truncate mt-0.5">{acc.org}</p>
@@ -238,12 +196,8 @@ export default function Login({ onLogin }) {
                     </span>
                   </div>
                 </div>
-
-                <ArrowRight
-                  className="w-4 h-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all shrink-0"
-                  strokeWidth={2}
-                />
-              </motion.button>
+                <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-gray-500 group-hover:translate-x-0.5 transition-all shrink-0" strokeWidth={2} />
+              </button>
             ))}
           </div>
 
@@ -255,78 +209,75 @@ export default function Login({ onLogin }) {
               className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 font-medium whitespace-nowrap transition-colors"
             >
               Connexion avec vos identifiants
-              <ChevronDown
-                className={`w-3 h-3 transition-transform ${showForm ? 'rotate-180' : ''}`}
-                strokeWidth={2.5}
-              />
+              <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${showForm ? 'rotate-180' : ''}`} strokeWidth={2.5} />
             </button>
             <div className="flex-1 h-px bg-gray-200" />
           </div>
 
-          {/* Credentials form */}
-          <AnimatePresence>
-            {showForm && (
-              <motion.form
-                key="form"
-                initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                animate={{ opacity: 1, height: 'auto', marginTop: 0 }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.22 }}
-                onSubmit={handleSubmit}
-                className="space-y-4 bg-white rounded-2xl border border-gray-200 p-5 shadow-sm overflow-hidden"
-              >
-                <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Adresse email</label>
+          {/* Credentials form — CSS transition, no framer-motion */}
+          <div
+            style={{
+              overflow: 'hidden',
+              maxHeight: showForm ? '400px' : '0',
+              opacity: showForm ? 1 : 0,
+              transition: 'max-height 0.25s ease, opacity 0.2s ease',
+            }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-4 bg-white rounded-2xl border border-gray-200 p-5 shadow-sm mb-4"
+            >
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5">Adresse email</label>
+                <input
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all bg-gray-50 text-gray-900"
+                  placeholder="vous@exemple.fr"
+                />
+              </div>
+              <div>
+                <label className="block text-xs font-semibold text-gray-700 mb-1.5">Mot de passe</label>
+                <div className="relative">
                   <input
-                    type="email"
-                    autoComplete="email"
+                    type={showPwd ? 'text' : 'password'}
+                    autoComplete="current-password"
                     required
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all bg-gray-50 text-gray-900"
-                    placeholder="vous@exemple.fr"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    className="w-full px-4 py-2.5 pr-11 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all bg-gray-50 text-gray-900"
+                    placeholder="••••••••"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setShowPwd(!showPwd)}
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                  >
+                    {showPwd ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                 </div>
-                <div>
-                  <label className="block text-xs font-semibold text-gray-700 mb-1.5">Mot de passe</label>
-                  <div className="relative">
-                    <input
-                      type={showPwd ? 'text' : 'password'}
-                      autoComplete="current-password"
-                      required
-                      value={password}
-                      onChange={e => setPassword(e.target.value)}
-                      className="w-full px-4 py-2.5 pr-11 border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 transition-all bg-gray-50 text-gray-900"
-                      placeholder="••••••••"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPwd(!showPwd)}
-                      className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                    >
-                      {showPwd ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
+              </div>
+              {error && (
+                <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5 text-sm">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  {error}
                 </div>
-                {error && (
-                  <div className="flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5 text-sm">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
-                    {error}
-                  </div>
-                )}
-                <button
-                  type="submit"
-                  disabled={loadingId !== null}
-                  className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm"
-                >
-                  {loadingId === 'form'
-                    ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-                    : <><span>Se connecter</span><ArrowRight className="w-4 h-4" /></>
-                  }
-                </button>
-              </motion.form>
-            )}
-          </AnimatePresence>
+              )}
+              <button
+                type="submit"
+                disabled={loadingId !== null}
+                className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm"
+              >
+                {loadingId === 'form'
+                  ? <span className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                  : <><span>Se connecter</span><ArrowRight className="w-4 h-4" /></>
+                }
+              </button>
+            </form>
+          </div>
 
           <p className="text-center text-xs text-gray-400 mt-6">
             © 2026 Medicalliance · Réseau toulousain · Tous droits réservés
